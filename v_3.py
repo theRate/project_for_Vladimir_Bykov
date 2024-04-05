@@ -60,20 +60,12 @@ print(separator)
 
 
 def linear_regression_coefficients(x, y):
-    # Преобразование списка значений x в двумерный массив (столбец)
     x_matrix = np.array(x).reshape((-1, 1))
-
-    # Добавление столбца из единиц для коэффициента b0 (intercept)
     x_matrix_with_intercept = np.hstack((np.ones_like(x_matrix), x_matrix))
-
-    # Вычисление коэффициентов линейной регрессии b0 и b1
-    coefficients = np.linalg.inv(x_matrix_with_intercept.T.dot(x_matrix_with_intercept)).dot(
-        x_matrix_with_intercept.T.dot(y))
-
+    coefficients = np.linalg.inv(x_matrix_with_intercept.T.dot(x_matrix_with_intercept)).dot(x_matrix_with_intercept.T.dot(y))
     return coefficients[0], coefficients[1]
 
 
-# Пример использования функции
 b, a = linear_regression_coefficients(result_line_x, y)
 print("Коэффициент 'b' (intercept):", b)
 print("Коэффициент 'a' (наклон):", a)
